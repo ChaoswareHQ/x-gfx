@@ -1,0 +1,13 @@
+[package]
+name = "x-gfx"
+authors = ["Nguyễn Quý Ngọc"]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.97.0"
+repository = "https://github.com/ChaoswareHQ/x-gfx"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+pixels = "0.17.1"
+wgpu = "30.0.0"
+winit = { version = "0.30.13", default-features = false, features = ["rwh_06", "x11", "wayland", "wayland-dlopen", "android-game-activity"] }
