@@ -5,9 +5,85 @@ version = "0.1.0"
 edition = "2024"
 rust-version = "1.97.0"
 repository = "https://github.com/ChaoswareHQ/x-gfx"
+homepage = "https://github.com/ChaoswareHQ/x-gfx"
+documentation = "https://chaoswarehq.github.io/x-gfx/"
 license = "MIT OR Apache-2.0"
+description = "A minimal NES graphics output library written in Rust, targeting everything from microcontrollers to modern desktops."
+readme = "README.md"
+keywords = ["nes", "emulator", "graphics", "embedded", "wgpu"]
+categories = ["emulators", "embedded", "game-development", "rendering", "multimedia"]
+
+exclude = [
+    ".cargo/",
+    ".github/",
+    "clippy.toml",
+    "docs/",
+    "fpga",
+    "rust-toolchain.toml",
+]
+
+[package.metadata.docs.rs]
+features = ["gpu"]
+
+[features]
+default = ["gpu"]
+gpu = ["dep:winit", "dep:wgpu"]
+mcu = []
+ffi = []
+
+[lib]
+name = "gfx"
+crate-type = ["lib", "cdylib", "staticlib"]
+
+[[example]]
+name = "main"
+path = "examples/main.rs"
+
+[[example]]
+name = "window"
+path = "examples/window.rs"
+required-features = ["gpu"]
+
+[[example]]
+name = "mcu"
+path = "examples/mcu.rs"
+required-features = ["mcu"]
 
 [dependencies]
-pixels = "0.17.1"
-wgpu = "30.0.0"
-winit = { version = "0.30.13", default-features = false, features = ["rwh_06", "x11", "wayland", "wayland-dlopen", "android-game-activity"] }
+# Common
+
+# === GPU backend ===
+winit = { version = "0.30.13", optional = true, default-features = false, features = [
+    "rwh_06",
+    "x11",
+    "wayland",
+    "wayland-dlopen",
+    "android-game-activity",
+] }
+wgpu  = { version = "30.0.0", optional = true }
+
+# === MCU backend ===
+# No HAL dependencies — framebuffer only, user provides the display driver.
+
+[dev-dependencies]
+softbuffer = "0.4.8"
+ureq = "3.3.0"
+cpal = "0.18.1"
+gilrs = "0.10.3"
+ringbuf = "0.5.0"
+x-nes = "0.1.1"
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+opt-level      = 3
+lto            = true
+codegen-units  = 1
+strip          = true
+panic          = "abort"
+
+[lints.clippy]
+all = "warn"
+pedantic = "warn"
+nursery = "warn"
