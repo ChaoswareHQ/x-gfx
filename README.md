@@ -1,7 +1,11 @@
 # x-gfx
 
-A minimal NES graphics output library, targeting everything from
+A minimal graphics output library, targeting everything from
 microcontrollers to modern desktops.
+
+Used by [x-chaos](https://github.com/ChaoswareHQ/x-chaos) for
+retro-emulator rendering, but general-purpose enough for any
+palette-indexed framebuffer workload.
 
 ## Features
 

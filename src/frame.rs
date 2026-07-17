@@ -1,13 +1,13 @@
-/// A borrowed NES frame buffer: 256×240 palette-indexed pixels.
+/// A borrowed palette-indexed frame buffer: 256×240 pixels.
 ///
-/// The NES PPU outputs one byte per pixel, where each byte is an
-/// index into the 64-entry NES colour palette.
+/// Each byte is an index into a colour palette (e.g. the NES 64-entry
+/// palette provided by [`Palette`](crate::palette::Palette)).
 pub struct Frame<'a> {
     data: &'a [u8; 256 * 240],
 }
 
 impl<'a> Frame<'a> {
-    /// Wrap a reference to the emulator's PPU frame buffer.
+    /// Wrap a reference to a 256×240 palette-indexed frame.
     #[inline(always)]
     #[must_use]
     pub fn new(data: &'a [u8; 256 * 240]) -> Self {

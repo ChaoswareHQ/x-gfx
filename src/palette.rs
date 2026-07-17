@@ -1,7 +1,8 @@
-/// NES colour palette — converts 6-bit colour indices to RGBA.
+/// Colour palette — converts 6-bit palette indices to ARGB.
 ///
-/// This is the standard NES palette derived from the PPU's internal
-/// circuitry.  Each entry is a 32-bit ARGB value (0xAARRGGBB).
+/// The default [`Palette::nes()`] provides the standard NES palette.
+/// You can construct your own palette for any indexed-colour format.
+/// Each entry is a 32-bit ARGB value (0xAARRGGBB).
 #[derive(Clone, Copy)]
 pub struct Palette {
     colours: [u32; 64],
@@ -34,7 +35,7 @@ impl Palette {
         self.colours[(index & 0x3F) as usize]
     }
 
-    /// Convert an entire NES frame in-place to ARGB pixels.
+    /// Convert an entire palette-indexed frame to ARGB pixels.
     ///
     /// `src` is 61440 palette-indexed bytes (256×240).
     /// `dst` is `width * height` ARGB pixels (will be scaled).

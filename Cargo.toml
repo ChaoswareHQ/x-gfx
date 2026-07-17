@@ -8,10 +8,10 @@ repository = "https://github.com/ChaoswareHQ/x-gfx"
 homepage = "https://github.com/ChaoswareHQ/x-gfx"
 documentation = "https://chaoswarehq.github.io/x-gfx/"
 license = "MIT OR Apache-2.0"
-description = "A minimal NES graphics output library written in Rust, targeting everything from microcontrollers to modern desktops."
+description = "A minimal graphics output library written in Rust, targeting everything from microcontrollers to modern desktops."
 readme = "README.md"
-keywords = ["nes", "emulator", "graphics", "embedded", "wgpu"]
-categories = ["emulators", "embedded", "game-development", "rendering", "multimedia"]
+keywords = ["graphics", "embedded", "wgpu", "framebuffer", "no-std"]
+categories = ["embedded", "game-development", "rendering", "multimedia"]
 
 exclude = [
     ".cargo/",
